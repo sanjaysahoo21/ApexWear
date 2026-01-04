@@ -1,0 +1,32 @@
+* text=auto
+
+# Git
+.gitignore export-ignore
+.gitattributes export-ignore
+
+# Java
+*.class binary
+*.jar binary
+*.war binary
+*.ear binary
+
+# Build
+target/ export-ignore
+
+# IDE
+.idea/ export-ignore
+.vscode/ export-ignore
+*.iml export-ignore
+*.iws export-ignore
+
+# OS
+.DS_Store binary
+Thumbs.db binary
+
+# Text files
+*.properties text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
