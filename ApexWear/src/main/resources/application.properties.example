@@ -1,0 +1,28 @@
+spring.application.name=apexwear
+
+server.port=8080
+
+# database configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/apexwear
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:your-db-password-here}
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# jpa configuration
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# jwt configuration
+jwt.secret=${JWT_SECRET:your-secret-key-min-32-characters-long-for-hs256}
+jwt.expiration=${JWT_EXPIRATION:86400}
+
+# google oauth2
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID:your-google-client-id-here}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET:your-google-client-secret-here}
+spring.security.oauth2.client.registration.google.scope=profile,email
+spring.security.oauth2.client.registration.google.redirect-uri={baseUrl}/login/oauth2/code/{registrationId}
+
+# frontend base url for redirects (dev default)
+app.frontend.url=${FRONTEND_URL:http://localhost:5174}
