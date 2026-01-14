@@ -1,0 +1,236 @@
+/* Navbar Style */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.5rem 0;
+    /* Slightly larger padding */
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar-content {
+    max-width: 1440px;
+    /* Updated to 1440px */
+    margin: 0 auto;
+    padding: 0 3rem;
+    /* Keep horizontal breathing room */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.2rem;
+    /* Increased size */
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3.5rem;
+    /* More space between links */
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+    padding: 1rem 0;
+    /* Vertical padding creates a 'bridge' for hover */
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    /* Increased size */
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Icons */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    width: 3rem;
+    /* Larger touch target */
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.icon-btn svg {
+    width: 2.4rem;
+    /* Larger icons */
+    height: 2.4rem;
+}
+
+.icon-btn:hover {
+    color: #000;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    /* Position right below the nav-item */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    min-width: 14rem;
+    /* Wider dropdown */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Stronger shadow */
+    padding: 0.8rem 0;
+    z-index: 1001;
+    margin-top: -0.2rem;
+    /* Pull up slightly to overlap/bridge the gap */
+    border-radius: 4px;
+}
+
+/* Invisible bridge to prevent closing when moving cursor */
+.dropdown-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    /* Extends invisible area downwards */
+    background: transparent;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 1rem 2rem;
+    /* Larger click areas */
+    font-size: 1.1rem;
+    /* Readable font */
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background: #f9f9f9;
+    color: #000;
+}
+
+/* Profile Dropdown */
+.profile-container.relative {
+    position: relative;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 130%;
+    /* Lower position */
+    right: 0;
+    width: 18rem;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 6px;
+    z-index: 1002;
+}
+
+.profile-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.profile-email {
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
+
+.profile-action-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #d32f2f;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-weight: 600;
+}
+
+.profile-action-btn:hover {
+    background-color: #fff5f5;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+}

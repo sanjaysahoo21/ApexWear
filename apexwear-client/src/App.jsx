@@ -1,5 +1,5 @@
 import './App.css'
-import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Auth/Login.jsx";
 import Signup from "./pages/Auth/Signup.jsx";
 import OAuth2Success from "./pages/Auth/OAuth2Success.jsx";
@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
+
   return (
     <>
       <BrowserRouter>

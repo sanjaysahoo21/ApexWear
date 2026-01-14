@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosConfig';
+import LeftImage from '../../assets/figmaAssets/authAssets/Left.png';
 import './Auth.css';
 
 const Login = () => {
@@ -48,19 +49,15 @@ const Login = () => {
                 password: password
             });
 
-            // Backend returns: { token, email, role }
             if (response.data.token) {
-                // Store JWT token
                 localStorage.setItem('token', response.data.token);
-
-                // Store user data
                 const userData = {
                     email: response.data.email,
                     role: response.data.role
                 };
                 localStorage.setItem('user', JSON.stringify(userData));
 
-                setSuccess('Login successful! Redirecting...');
+                setSuccess('Login successful!');
                 setTimeout(() => {
                     navigate('/home');
                 }, 1500);
@@ -86,70 +83,86 @@ const Login = () => {
     };
 
     const handleGoogleLogin = () => {
-        // Navigate user to backend OAuth2 authorization endpoint
         window.location.href = 'http://localhost:8080/oauth2/authorization/google';
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-wrapper">
-                <div className="auth-card">
-                    <div className="auth-header">
-                        <h1>ApexWear</h1>
-                        <h2>Login</h2>
-                        <p className="auth-subtitle">Welcome back to ApexWear</p>
-                    </div>
+        <div className="auth-page">
+            <div className="auth-split-layout">
+                {/* Left Side - Image */}
+                <div className="auth-left-panel">
+                    <img src={LeftImage} alt="Login Visual" className="auth-hero-image" />
+                </div>
 
-                    <form onSubmit={handleSubmit} className="auth-form">
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email Address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="form-input"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                disabled={loading}
-                                required
-                            />
+                {/* Right Side - Form */}
+                <div className="auth-right-panel">
+                    <div className="auth-content-container">
+                        <div className="auth-header">
+                            <h1>Welcome Back</h1>
+                            <p className="auth-subtitle">Please enter your details to sign in.</p>
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                className="form-input"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                        <form onSubmit={handleSubmit} className="auth-form">
+                            <div className="form-group">
+                                <label htmlFor="email">Email address</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    className="form-input"
+                                    placeholder="Enter your email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    className="form-input"
+                                    placeholder="Enter your password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            {error && <div className="alert alert-error">{error}</div>}
+                            {success && <div className="alert alert-success">{success}</div>}
+
+                            <div className="form-actions">
+                                <Link to="#" className="forgot-password-link">Forgot Password?</Link>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="btn btn-primary btn-block"
                                 disabled={loading}
-                                required
-                            />
-                        </div>
+                            >
+                                {loading ? 'Signing in...' : 'Sign In'}
+                            </button>
 
-                        {error && <div className="alert alert-error">{error}</div>}
-                        {success && <div className="alert alert-success">{success}</div>}
+                            <div className="divider">
+                                <span>Or continue with</span>
+                            </div>
 
-                        <button
-                            type="submit"
-                            className="btn btn-primary btn-login"
-                            disabled={loading}
-                        >
-                            {loading ? 'Logging in...' : 'Login'}
-                        </button>
-                    </form>
+                            <button
+                                type="button"
+                                onClick={handleGoogleLogin}
+                                className="btn btn-google btn-block"
+                            >
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="google-icon" />
+                                Google
+                            </button>
 
-                    <div style={{ marginTop: '1.6rem' }}>
-                        <button type="button" onClick={handleGoogleLogin} className="btn btn-google btn-login">
-                            Continue with Google
-                        </button>
-                    </div>
-
-                    <div className="auth-footer">
-                        <p>Don't have an account? <Link to="/signup" className="auth-link">Sign up here</Link></p>
-                        <Link to="#" className="forgot-password">Forgot password?</Link>
+                            <div className="auth-footer">
+                                <p>Don't have an account? <Link to="/signup" className="auth-link-primary">Sign up</Link></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

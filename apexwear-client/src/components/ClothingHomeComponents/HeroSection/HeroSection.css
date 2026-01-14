@@ -1,0 +1,115 @@
+/* Split Hero Section Styles */
+.clothing-hero-split {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 820px;
+    /* Fixed height as requested */
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Left - Image Container */
+.hero-image-container {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-model-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Right - Content Container */
+.hero-content-container {
+    width: 50%;
+    background-color: #131924;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.content-wrapper {
+    max-width: 550px;
+    color: #fff;
+}
+
+.hero-headline {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: -1px;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #d1d5db;
+    /* Light gray text */
+    margin-bottom: 2.5rem;
+    max-width: 450px;
+}
+
+/* Button */
+.shopping-btn {
+    background-color: #3b82f6;
+    /* Bright Blue */
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    /* Slightly rounded */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-transform: none;
+    /* Not uppercase in design */
+}
+
+.shopping-btn:hover {
+    background-color: #2563eb;
+}
+
+/* Responsive */
+/* Only applying responsiveness for Mobile phones (below typical tablet width) */
+@media (max-width: 600px) {
+    .clothing-hero-split {
+        flex-direction: column;
+        height: auto;
+        /* Allow auto height on mobile for stacking */
+    }
+
+    .hero-image-container,
+    .hero-content-container {
+        width: 100%;
+    }
+
+    .hero-image-container {
+        height: 450px;
+        /* Slightly smaller image for phones */
+    }
+
+    .hero-content-container {
+        padding: 3rem 1.5rem;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+    }
+
+    .hero-headline {
+        font-size: 2.8rem;
+    }
+
+    .content-wrapper {
+        margin: 0 auto;
+    }
+}

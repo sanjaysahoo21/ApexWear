@@ -1,0 +1,234 @@
+/* Product Carousel Styles */
+.product-carousel-section {
+    width: 100%;
+    max-width: 1440px;
+    height: 647px;
+    margin: 0 auto;
+    padding: 3rem 0;
+    /* Adjust padding to center vertically or as needed */
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Header */
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    /* Match hero padding align */
+    margin-bottom: 2rem;
+}
+
+.carousel-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.carousel-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    /* Grey */
+    cursor: pointer;
+}
+
+.carousel-dots .dot.active {
+    background-color: #000;
+    border: 1px solid #000;
+    padding: 2px;
+    /* Ring effect */
+    background-clip: content-box;
+    width: 14px;
+    height: 14px;
+}
+
+/* Track / Grid */
+.carousel-track-container {
+    padding: 0 4rem;
+    overflow: hidden;
+    /* Hide overflow for seamless infinite effect */
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    /* Fade edges */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    /* Allow track to grow for infinite items */
+    animation: scroll 30s linear infinite;
+    /* Continuous scroll */
+}
+
+/* Pause on hover */
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* Infinite Scroll Animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-100% / 2));
+        /* Move half the length (since we duplicated items) */
+    }
+}
+
+/* Card */
+.carousel-card {
+    min-width: 300px;
+    /* flex: 1; Removed flex:1 to allow fixed width scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    /* Standard portrait ratio */
+    background-color: #f3f4f6;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .product-img {
+    transform: scale(1.03);
+}
+
+/* Badge */
+.badge-new {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #fff;
+    color: #000;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Icons */
+.wishlist-icon-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #fff;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.wishlist-icon-btn:hover {
+    color: #ef4444;
+    /* Red heart hover */
+}
+
+/* Add to Cart Overlay */
+.add-to-cart-overlay {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.carousel-card:hover .add-to-cart-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Details */
+.card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.stars {
+    color: #333;
+    /* Dark stars as per design */
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 0.95rem;
+    color: #000;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+
+    .carousel-header,
+    .carousel-track-container {
+        padding: 0 2rem;
+    }
+
+    .carousel-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .carousel-header,
+    .carousel-track-container {
+        padding: 0 1.5rem;
+    }
+
+    .carousel-card {
+        min-width: 250px;
+    }
+}

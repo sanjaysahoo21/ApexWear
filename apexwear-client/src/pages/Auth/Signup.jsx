@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosConfig';
+import LeftImage from '../../assets/figmaAssets/authAssets/Left.png';
 import './Auth.css';
 
 const Signup = () => {
@@ -30,38 +31,31 @@ const Signup = () => {
             setError('Name is required');
             return false;
         }
-
         if (name.trim().length < 2) {
             setError('Name must be at least 2 characters');
             return false;
         }
-
         if (!email.trim()) {
             setError('Email is required');
             return false;
         }
-
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setError('Please enter a valid email address');
             return false;
         }
-
         if (!password) {
             setError('Password is required');
             return false;
         }
-
         if (password.length < 6) {
             setError('Password must be at least 6 characters');
             return false;
         }
-
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return false;
         }
-
         return true;
     };
 
@@ -82,9 +76,7 @@ const Signup = () => {
                 password: formData.password
             });
 
-            // Backend returns: { token, email, role }
             if (response.data.token) {
-                // Store token and user data
                 localStorage.setItem('token', response.data.token);
                 const userData = {
                     email: response.data.email,
@@ -93,11 +85,10 @@ const Signup = () => {
                 localStorage.setItem('user', JSON.stringify(userData));
             }
 
-            // Always redirect to login page after successful signup
-            setSuccess('Account created successfully! Redirecting to login...');
+            setSuccess('Account created successfully!');
             setTimeout(() => {
                 navigate('/login');
-            }, 1500);
+            }, 1000);
         } catch (err) {
             if (err.response?.data?.message) {
                 setError(err.response.data.message);
@@ -121,97 +112,110 @@ const Signup = () => {
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-wrapper">
-                <div className="auth-card">
-                    <div className="auth-header">
-                        <h1>ApexWear</h1>
-                        <h2>Create Account</h2>
-                        <p className="auth-subtitle">Join ApexWear today</p>
-                    </div>
+        <div className="auth-page">
+            <div className="auth-split-layout">
+                {/* Left Side - Image */}
+                <div className="auth-left-panel">
+                    <img src={LeftImage} alt="Signup Visual" className="auth-hero-image" />
+                </div>
 
-                    <form onSubmit={handleSubmit} className="auth-form">
-                        <div className="form-group">
-                            <label htmlFor="name" className="form-label">Full Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                className="form-input"
-                                placeholder="Enter your full name"
-                                value={formData.name}
-                                onChange={handleInputChange}
-                                disabled={loading}
-                                required
-                            />
+                {/* Right Side - Form */}
+                <div className="auth-right-panel">
+                    <div className="auth-content-container">
+                        <div className="auth-header">
+                            <h1>Create Account</h1>
+                            <p className="auth-subtitle">Start your journey with ApexWear.</p>
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email Address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="form-input"
-                                placeholder="Enter your email"
-                                value={formData.email}
-                                onChange={handleInputChange}
+                        <form onSubmit={handleSubmit} className="auth-form">
+                            <div className="form-group">
+                                <label htmlFor="name">Full Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    className="form-input"
+                                    placeholder="Enter your full name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="email">Email Address</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="form-input"
+                                    placeholder="Enter your email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className="form-input"
+                                    placeholder="Create a password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    className="form-input"
+                                    placeholder="Confirm your password"
+                                    value={formData.confirmPassword}
+                                    onChange={handleInputChange}
+                                    disabled={loading}
+                                    required
+                                />
+                            </div>
+
+                            {error && <div className="alert alert-error">{error}</div>}
+                            {success && <div className="alert alert-success">{success}</div>}
+
+                            <button
+                                type="submit"
+                                className="btn btn-primary btn-block"
                                 disabled={loading}
-                                required
-                            />
-                        </div>
+                            >
+                                {loading ? 'Creating Account...' : 'Sign Up'}
+                            </button>
 
-                        <div className="form-group">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="form-input"
-                                placeholder="Create a password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                disabled={loading}
-                                required
-                            />
-                            <p className="form-hint">At least 6 characters</p>
-                        </div>
+                            <div className="divider">
+                                <span>Or signup with</span>
+                            </div>
 
-                        <div className="form-group">
-                            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                className="form-input"
-                                placeholder="Confirm your password"
-                                value={formData.confirmPassword}
-                                onChange={handleInputChange}
-                                disabled={loading}
-                                required
-                            />
-                        </div>
+                            <button
+                                type="button"
+                                onClick={handleGoogleSignup}
+                                className="btn btn-google btn-block"
+                            >
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="google-icon" />
+                                Sign Up with Google
+                            </button>
 
-                        {error && <div className="alert alert-error">{error}</div>}
-                        {success && <div className="alert alert-success">{success}</div>}
-
-                        <button
-                            type="submit"
-                            className="btn btn-primary btn-login"
-                            disabled={loading}
-                        >
-                            {loading ? 'Creating Account...' : 'Sign Up'}
-                        </button>
-                    </form>
-
-                    <div style={{ marginTop: '1.6rem' }}>
-                        <button type="button" onClick={handleGoogleSignup} className="btn btn-google btn-login">
-                            Sign Up with Google
-                        </button>
-                    </div>
-
-                    <div className="auth-footer">
-                        <p>Already have an account? <Link to="/login" className="auth-link">Log in here</Link></p>
+                            <div className="auth-footer">
+                                <p>Already have an account? <Link to="/login" className="auth-link-primary">Log in</Link></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

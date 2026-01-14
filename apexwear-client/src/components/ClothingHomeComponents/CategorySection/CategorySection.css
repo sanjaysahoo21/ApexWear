@@ -1,0 +1,116 @@
+/* Category Section Styles */
+.category-section {
+    width: 100%;
+    max-width: 1440px;
+    height: 389px;
+    /* Fixed height as requested */
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.category-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    /* Matching the font weight in image */
+    margin-bottom: 3rem;
+    color: #1f2937;
+    /* Dark gray */
+    text-align: center;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    /* Spacing between circles */
+    flex-wrap: wrap;
+    /* Defensive wrapping for smaller screens */
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Circular Image Container */
+.category-img-container {
+    width: 160px;
+    /* Size estimate based on total width */
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    /* Placeholder background */
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover .category-img {
+    transform: scale(1.1);
+    /* Subtle zoom on hover */
+}
+
+.category-name {
+    font-size: 1rem;
+    font-weight: 700;
+    /* Bold labels */
+    color: #000;
+    text-align: center;
+    /* text-transform: uppercase; Removed based on scan showing Title Case */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .category-section {
+        height: auto;
+        padding: 4rem 0;
+    }
+
+    .category-grid {
+        gap: 2rem;
+    }
+
+    .category-img-container {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 600px) {
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3x2 grid on mobile */
+        gap: 1.5rem;
+    }
+
+    .category-img-container {
+        width: 90px;
+        height: 90px;
+    }
+
+    .category-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}

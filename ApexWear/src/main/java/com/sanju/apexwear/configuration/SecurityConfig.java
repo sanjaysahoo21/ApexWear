@@ -4,8 +4,10 @@ import com.sanju.apexwear.auth.security.OAuth2SuccessHandler;
 import com.sanju.apexwear.auth.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity // Enable @PreAuthorize
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
@@ -37,6 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/home").authenticated()
                         .requestMatchers("/api/auth/signup", "/api/auth/login", "/oauth2/**", "/login/oauth2/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll() // Public read access for categories
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
