@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosConfig';
-import LeftImage from '../../assets/figmaAssets/authAssets/Left.png';
 import './Auth.css';
 
 const Signup = () => {
@@ -18,45 +17,7 @@ const Signup = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const validateForm = () => {
-        const { name, email, password, confirmPassword } = formData;
-
-        if (!name.trim()) {
-            setError('Name is required');
-            return false;
-        }
-        if (name.trim().length < 2) {
-            setError('Name must be at least 2 characters');
-            return false;
-        }
-        if (!email.trim()) {
-            setError('Email is required');
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            setError('Please enter a valid email address');
-            return false;
-        }
-        if (!password) {
-            setError('Password is required');
-            return false;
-        }
-        if (password.length < 6) {
-            setError('Password must be at least 6 characters');
-            return false;
-        }
-        if (password !== confirmPassword) {
-            setError('Passwords do not match');
-            return false;
-        }
-        return true;
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
@@ -64,44 +25,21 @@ const Signup = () => {
         setError('');
         setSuccess('');
 
-        if (!validateForm()) {
-            return;
-        }
+        const { name, email, password, confirmPassword } = formData;
+        if (!name || !email || !password) return setError('Please fill in all fields');
+        if (password !== confirmPassword) return setError('Passwords do not match');
 
         setLoading(true);
         try {
-            const response = await axiosInstance.post('/api/auth/signup', {
-                fullname: formData.name.trim(),
-                email: formData.email.trim(),
-                password: formData.password
+            await axiosInstance.post('/api/auth/signup', {
+                fullname: name.trim(),
+                email: email.trim(),
+                password: password
             });
-
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                const userData = {
-                    email: response.data.email,
-                    role: response.data.role
-                };
-                localStorage.setItem('user', JSON.stringify(userData));
-            }
-
             setSuccess('Account created successfully!');
-            setTimeout(() => {
-                navigate('/login');
-            }, 1000);
+            setTimeout(() => navigate('/login'), 1500);
         } catch (err) {
-            if (err.response?.data?.message) {
-                setError(err.response.data.message);
-            } else if (err.response?.status === 409) {
-                setError('Email already registered. Please log in instead.');
-            } else if (err.response?.status === 400) {
-                setError('Invalid input. Please check all fields and try again.');
-            } else if (err.request) {
-                setError('Cannot connect to server. Please try again later.');
-            } else {
-                setError('An error occurred. Please try again.');
-            }
-            console.error('Signup error:', err);
+            setError(err.response?.data?.message || 'Registration failed');
         } finally {
             setLoading(false);
         }
@@ -114,100 +52,95 @@ const Signup = () => {
     return (
         <div className="auth-page">
             <div className="auth-split-layout">
-                {/* Left Side - Image */}
+                {/* Left Side: Animation + Branding */}
                 <div className="auth-left-panel">
-                    <img src={LeftImage} alt="Signup Visual" className="auth-hero-image" />
+                    <div className="left-panel-bg">
+                        <div className="panel-blob pb-1"></div>
+                        <div className="panel-blob pb-2"></div>
+                        <div className="panel-blob pb-3"></div>
+                        <div className="panel-blob pb-4"></div>
+                    </div>
+                    <div className="left-branding">
+                        <h1>
+                            <span>A</span>pex<br />
+                            <span>W</span>ear
+                        </h1>
+                    </div>
                 </div>
 
-                {/* Right Side - Form */}
+                {/* Right Side: Form (Older Style) */}
                 <div className="auth-right-panel">
                     <div className="auth-content-container">
                         <div className="auth-header">
-                            <h1>Create Account</h1>
+                            <h2>Create account</h2>
                             <p className="auth-subtitle">Start your journey with ApexWear.</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="auth-form">
                             <div className="form-group">
-                                <label htmlFor="name">Full Name</label>
+                                <label>Full name</label>
                                 <input
                                     type="text"
-                                    id="name"
-                                    name="name"
                                     className="form-input"
-                                    placeholder="Enter your full name"
+                                    name="name"
+                                    placeholder="Enter your name"
                                     value={formData.name}
                                     onChange={handleInputChange}
                                     disabled={loading}
-                                    required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="email">Email Address</label>
+                                <label>Email address</label>
                                 <input
                                     type="email"
-                                    id="email"
-                                    name="email"
                                     className="form-input"
+                                    name="email"
                                     placeholder="Enter your email"
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     disabled={loading}
-                                    required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="password">Password</label>
+                                <label>Password</label>
                                 <input
                                     type="password"
-                                    id="password"
-                                    name="password"
                                     className="form-input"
+                                    name="password"
                                     placeholder="Create a password"
                                     value={formData.password}
                                     onChange={handleInputChange}
                                     disabled={loading}
-                                    required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <label>Confirm Password</label>
                                 <input
                                     type="password"
-                                    id="confirmPassword"
-                                    name="confirmPassword"
                                     className="form-input"
-                                    placeholder="Confirm your password"
+                                    name="confirmPassword"
+                                    placeholder="Repeat password"
                                     value={formData.confirmPassword}
                                     onChange={handleInputChange}
                                     disabled={loading}
-                                    required
                                 />
                             </div>
 
                             {error && <div className="alert alert-error">{error}</div>}
                             {success && <div className="alert alert-success">{success}</div>}
 
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-block"
-                                disabled={loading}
-                            >
-                                {loading ? 'Creating Account...' : 'Sign Up'}
+                            <button type="submit" className="btn-primary" disabled={loading}>
+                                {loading ? 'Creating account...' : 'Sign Up'}
                             </button>
 
                             <div className="divider">
-                                <span>Or signup with</span>
+                                <span>OR</span>
                             </div>
 
-                            <button
-                                type="button"
-                                onClick={handleGoogleSignup}
-                                className="btn btn-google btn-block"
-                            >
+                            <button type="button" onClick={handleGoogleSignup} className="btn-google">
                                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="google-icon" />
                                 Sign Up with Google
                             </button>

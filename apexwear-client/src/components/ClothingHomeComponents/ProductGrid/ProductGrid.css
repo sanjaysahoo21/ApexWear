@@ -1,0 +1,211 @@
+/* Product Grid Styles */
+.product-grid-section {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.grid-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #000;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 Columns */
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Card Styles */
+.grid-card {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.grid-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 0.8;
+    /* Slightly taller than square */
+    background-color: #f3f4f6;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.grid-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.grid-card:hover .grid-product-img {
+    transform: scale(1.05);
+}
+
+/* Badges */
+.badges-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.badge-hot {
+    background-color: #fff;
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-discount {
+    background-color: #22c55e;
+    /* Green color from design */
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add to Cart Overlay (copied from ProductCarousel for consistency) */
+.grid-add-to-cart-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    z-index: 20;
+    /* Ensure on top of image */
+}
+
+.grid-card:hover .grid-add-to-cart-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.grid-wishlist-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #fff;
+    color: #121212;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 25;
+}
+
+.grid-card:hover .grid-wishlist-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.grid-wishlist-btn:hover {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Details */
+.grid-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.grid-stars {
+    color: #333;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.grid-product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* Limit title to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.grid-price-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+.grid-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.grid-original-price {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #9ca3af;
+    /* Grey text */
+    text-decoration: line-through;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .product-grid-section {
+        padding: 3rem 1rem;
+    }
+
+    .grid-title {
+        font-size: 2rem;
+    }
+}

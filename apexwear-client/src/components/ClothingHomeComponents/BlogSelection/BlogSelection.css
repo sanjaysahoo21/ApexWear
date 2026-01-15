@@ -1,0 +1,144 @@
+/* Blog Selection Styles */
+.blog-section {
+    width: 100%;
+    background-color: #fff;
+    padding: 4rem 0;
+}
+
+.blog-container {
+    max-width: 1440px;
+    height: 657px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.blog-main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #121212;
+    letter-spacing: -0.02em;
+}
+
+.view-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #121212;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #121212;
+    padding-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.view-more-link:hover {
+    gap: 0.8rem;
+    opacity: 0.8;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    flex: 1;
+}
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.blog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-image {
+    transform: scale(1.05);
+}
+
+.blog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #121212;
+    line-height: 1.4;
+}
+
+.read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #121212;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #121212;
+    padding-bottom: 4px;
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.read-more-link:hover {
+    gap: 0.8rem;
+    opacity: 0.8;
+}
+
+.link-arrow {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .blog-container {
+        height: auto;
+        padding: 0 2rem;
+    }
+
+    .blog-main-title {
+        font-size: 2rem;
+    }
+
+    .blog-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .blog-image-wrapper {
+        aspect-ratio: 16 / 9;
+    }
+
+    .blog-main-title {
+        font-size: 1.75rem;
+    }
+}

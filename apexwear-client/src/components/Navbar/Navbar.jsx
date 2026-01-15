@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import './Navbar.css';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const { toggleCart, cartCount } = useCart();
+    const { toggleWishlist, wishlistCount } = useWishlist();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isShopOpen, setIsShopOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
 
     // Mock user for now
@@ -28,24 +31,15 @@ const Navbar = () => {
                         <span className="nav-link cursor-pointer" onClick={() => navigate('/home')}>Home</span>
                     </div>
 
-                    <div className="nav-item dropdown-container"
-                        onMouseEnter={() => setIsShopOpen(true)}
-                        onMouseLeave={() => setIsShopOpen(false)}>
-                        <span className="nav-link cursor-pointer">Shop</span>
-                        {isShopOpen && (
-                            <div className="dropdown-menu">
-                                <div className="dropdown-item">Clothing</div>
-                                <div className="dropdown-item">Electronics</div>
-                                <div className="dropdown-item">Furniture</div>
-                            </div>
-                        )}
+                    <div className="nav-item">
+                        <span className="nav-link cursor-pointer" onClick={() => navigate('/shop')}>Shop</span>
                     </div>
 
                     <div className="nav-item">
-                        <span className="nav-link cursor-pointer">New Arrivals</span>
+                        <span className="nav-link cursor-pointer" onClick={() => navigate('/cart')}>Cart</span>
                     </div>
                     <div className="nav-item">
-                        <span className="nav-link cursor-pointer">Brands</span>
+                        <span className="nav-link cursor-pointer">About</span>
                     </div>
                 </div>
 
@@ -56,10 +50,17 @@ const Navbar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <button className="icon-btn cart-btn">
+                    <button className="icon-btn wishlist-btn" onClick={toggleWishlist}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                        </svg>
+                        {wishlistCount > 0 && <span className="wishlist-badge">{wishlistCount}</span>}
+                    </button>
+                    <button className="icon-btn cart-btn" onClick={toggleCart}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                         </svg>
+                        {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
                     </button>
                     <div className="profile-container relative">
                         <button className="icon-btn profile-btn" onClick={() => setIsProfileOpen(!isProfileOpen)}>

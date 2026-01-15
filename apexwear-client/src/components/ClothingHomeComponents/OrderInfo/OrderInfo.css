@@ -1,0 +1,95 @@
+/* Order Info Section Styles */
+.order-info-section {
+    width: 100%;
+    background-color: #F3F5F7;
+    /* Matching the master design background */
+    padding: 3.5rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.order-info-container {
+    max-width: 1120px;
+    /* Constrained width for better alignment like design */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.order-info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.order-info-card:hover {
+    transform: translateY(-5px);
+}
+
+.order-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.order-icon {
+    width: auto;
+    height: 32px;
+    /* Standardizing icon height */
+    object-fit: contain;
+}
+
+.order-text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.order-title {
+    font-size: 1.125rem;
+    /* ~18px */
+    font-weight: 600;
+    color: #141718;
+    margin: 0;
+}
+
+.order-subtitle {
+    font-size: 0.875rem;
+    /* ~14px */
+    font-weight: 400;
+    color: #6C7275;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .order-info-container {
+        grid-template-columns: repeat(2, 2fr);
+        gap: 3rem;
+        padding: 0 4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .order-info-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .order-info-card {
+        align-items: center;
+        text-align: center;
+    }
+
+    .order-icon-wrapper {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,288 @@
+.shopping-cart-content {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.cart-table-section {
+    flex: 1;
+}
+
+.cart-table-header {
+    display: flex;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #E8ECEF;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #121212;
+}
+
+.col-product {
+    flex: 3;
+}
+
+.col-quantity {
+    flex: 1.5;
+    text-align: center;
+}
+
+.col-price {
+    flex: 1;
+    text-align: right;
+}
+
+.col-subtotal {
+    flex: 1;
+    text-align: right;
+}
+
+.cart-table-row {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid #E8ECEF;
+}
+
+.cart-product-info {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.product-img-box {
+    width: 80px;
+    height: 100px;
+    background-color: #F3F5F7;
+    flex-shrink: 0;
+}
+
+.product-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-text h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.product-text p {
+    font-size: 0.875rem;
+    color: #6C7275;
+    margin-bottom: 0.5rem;
+}
+
+.row-remove-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    color: #6C7275;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.row-remove-btn:hover {
+    color: #121212;
+}
+
+.row-quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #6C7275;
+    border-radius: 4px;
+    padding: 4px 12px;
+    gap: 1rem;
+}
+
+.row-quantity-controls button {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #121212;
+}
+
+.row-quantity-controls span {
+    font-weight: 600;
+    min-width: 20px;
+}
+
+.col-price,
+.col-subtotal {
+    font-weight: 500;
+    color: #121212;
+}
+
+/* Coupon */
+.coupon-section {
+    margin-top: 3rem;
+}
+
+.coupon-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.coupon-section p {
+    color: #6C7275;
+    margin-bottom: 1.5rem;
+}
+
+.coupon-input-box {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 450px;
+}
+
+.input-with-icon {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid #CBCBCB;
+    border-radius: 8px;
+    padding: 0 1rem;
+}
+
+.input-with-icon input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 48px;
+    font-size: 1rem;
+}
+
+.apply-coupon-btn {
+    background-color: #121212;
+    color: #fff;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Summary Card */
+.cart-summary-card {
+    width: 400px;
+    border: 1px solid #6C7275;
+    border-radius: 8px;
+    padding: 2.5rem;
+}
+
+.cart-summary-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.shipping-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.shipping-option {
+    display: flex;
+    align-items: center;
+    border: 1px solid #E8ECEF;
+    border-radius: 4px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.shipping-option:hover {
+    background-color: #F9F9F9;
+}
+
+.shipping-option.selected {
+    border-color: #121212;
+    background-color: #F3F5F7;
+}
+
+.shipping-option input {
+    margin-right: 1rem;
+}
+
+.option-label {
+    flex: 1;
+    font-size: 1rem;
+}
+
+.option-price {
+    font-weight: 500;
+}
+
+.summary-details {
+    padding-top: 1.5rem;
+    border-top: 1px solid #E8ECEF;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.total-line {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E8ECEF;
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    background-color: #121212;
+    color: #fff;
+    border: none;
+    padding: 1.25rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.empty-cart-state {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.empty-cart-state p {
+    font-size: 1.25rem;
+    color: #6C7275;
+    margin-bottom: 2rem;
+}
+
+.go-shop-btn {
+    background-color: #121212;
+    color: #fff;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .shopping-cart-content {
+        flex-direction: column;
+    }
+
+    .cart-summary-card {
+        width: 100%;
+    }
+}

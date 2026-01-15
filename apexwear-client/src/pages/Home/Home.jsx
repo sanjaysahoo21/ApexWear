@@ -4,8 +4,12 @@ import HeroSection from '../../components/ClothingHomeComponents/HeroSection/Her
 import ProductCarousel from '../../components/ClothingHomeComponents/ProductCarousel/ProductCarousel';
 import CategorySection from '../../components/ClothingHomeComponents/CategorySection/CategorySection';
 import BannerGrid from '../../components/ClothingHomeComponents/BannerGrid/BannerGrid';
+import ProductGrid from '../../components/ClothingHomeComponents/ProductGrid/ProductGrid';
+import Banner from '../../components/ClothingHomeComponents/Banner/Banner';
+import BlogSelection from '../../components/ClothingHomeComponents/BlogSelection/BlogSelection';
+import OrderInfo from '../../components/ClothingHomeComponents/OrderInfo/OrderInfo';
+import Footer from '../../components/ClothingHomeComponents/Footer/Footer';
 import './Home.css';
-
 const Home = () => {
     return (
         <div className="home-container">
@@ -19,11 +23,15 @@ const Home = () => {
 
             <BannerGrid />
 
-            {/* Placeholder for Next Sections */}
-            <div style={{ padding: '4rem', textAlign: 'center', color: '#888' }}>
-                <h2>Next Section: Footer?</h2>
-                <p>Waiting for design instructions...</p>
-            </div>
+            <ProductGrid />
+
+            <Banner />
+
+            <BlogSelection />
+
+            <OrderInfo />
+
+            <Footer />
         </div>
     );
 };

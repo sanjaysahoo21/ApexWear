@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosConfig';
-import LeftImage from '../../assets/figmaAssets/authAssets/Left.png';
 import './Auth.css';
 
 const Login = () => {
@@ -12,33 +11,13 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const validateForm = () => {
-        if (!email.trim()) {
-            setError('Email is required');
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            setError('Please enter a valid email address');
-            return false;
-        }
-        if (!password) {
-            setError('Password is required');
-            return false;
-        }
-        if (password.length < 6) {
-            setError('Password must be at least 6 characters');
-            return false;
-        }
-        return true;
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
 
-        if (!validateForm()) {
+        if (!email || !password) {
+            setError('Please fill in all fields');
             return;
         }
 
@@ -51,32 +30,16 @@ const Login = () => {
 
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
-                const userData = {
+                localStorage.setItem('user', JSON.stringify({
                     email: response.data.email,
                     role: response.data.role
-                };
-                localStorage.setItem('user', JSON.stringify(userData));
+                }));
 
-                setSuccess('Login successful!');
-                setTimeout(() => {
-                    navigate('/home');
-                }, 1500);
-            } else {
-                setError('Login failed. Please try again.');
+                setSuccess('Welcome to ApexWear!');
+                setTimeout(() => navigate('/home'), 1500);
             }
         } catch (err) {
-            if (err.response?.status === 401) {
-                setError('Invalid email or password');
-            } else if (err.response?.status === 400) {
-                setError('Invalid input. Please check your email and password.');
-            } else if (err.response?.data?.message) {
-                setError(err.response.data.message);
-            } else if (err.request) {
-                setError('Cannot connect to server. Please try again later.');
-            } else {
-                setError('An error occurred. Please try again.');
-            }
-            console.error('Login error:', err);
+            setError(err.response?.data?.message || 'Invalid credentials');
         } finally {
             setLoading(false);
         }
@@ -89,74 +52,73 @@ const Login = () => {
     return (
         <div className="auth-page">
             <div className="auth-split-layout">
-                {/* Left Side - Image */}
+                {/* Left Side: Animation + Branding */}
                 <div className="auth-left-panel">
-                    <img src={LeftImage} alt="Login Visual" className="auth-hero-image" />
+                    <div className="left-panel-bg">
+                        <div className="panel-blob pb-1"></div>
+                        <div className="panel-blob pb-2"></div>
+                        <div className="panel-blob pb-3"></div>
+                        <div className="panel-blob pb-4"></div>
+                    </div>
+                    <div className="left-branding">
+                        <h1>
+                            <span>A</span>pex<br />
+                            <span>W</span>ear
+                        </h1>
+                    </div>
                 </div>
 
-                {/* Right Side - Form */}
+                {/* Right Side: Form (Older Style) */}
                 <div className="auth-right-panel">
                     <div className="auth-content-container">
                         <div className="auth-header">
-                            <h1>Welcome Back</h1>
+                            <h2>Welcome back</h2>
                             <p className="auth-subtitle">Please enter your details to sign in.</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="auth-form">
                             <div className="form-group">
-                                <label htmlFor="email">Email address</label>
+                                <label>Email address</label>
                                 <input
                                     type="email"
-                                    id="email"
                                     className="form-input"
                                     placeholder="Enter your email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     disabled={loading}
-                                    required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="password">Password</label>
+                                <label>Password</label>
                                 <input
                                     type="password"
-                                    id="password"
                                     className="form-input"
                                     placeholder="Enter your password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     disabled={loading}
-                                    required
                                 />
+                            </div>
+
+                            <div className="form-actions">
+                                <Link to="#" className="forgot-password-link">Forgot password?</Link>
                             </div>
 
                             {error && <div className="alert alert-error">{error}</div>}
                             {success && <div className="alert alert-success">{success}</div>}
 
-                            <div className="form-actions">
-                                <Link to="#" className="forgot-password-link">Forgot Password?</Link>
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-block"
-                                disabled={loading}
-                            >
+                            <button type="submit" className="btn-primary" disabled={loading}>
                                 {loading ? 'Signing in...' : 'Sign In'}
                             </button>
 
                             <div className="divider">
-                                <span>Or continue with</span>
+                                <span>OR</span>
                             </div>
 
-                            <button
-                                type="button"
-                                onClick={handleGoogleLogin}
-                                className="btn btn-google btn-block"
-                            >
+                            <button type="button" onClick={handleGoogleLogin} className="btn-google">
                                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="google-icon" />
-                                Google
+                                Sign In with Google
                             </button>
 
                             <div className="auth-footer">
