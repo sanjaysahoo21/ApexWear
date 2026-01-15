@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
 import HeroImg from './Paste image.png';
 
 const HeroSection = () => {
+    const navigate = useNavigate();
     return (
         <section className="clothing-hero-split">
             {/* Left Side - Image */}
@@ -18,7 +20,7 @@ const HeroSection = () => {
                         Everyone needs a good winter jacket. <br />
                         Find yours with our collection and more.
                     </p>
-                    <button className="shopping-btn">Shopping Now</button>
+                    <button className="shopping-btn" onClick={() => navigate('/shop')}>Shopping Now</button>
                 </div>
             </div>
         </section>

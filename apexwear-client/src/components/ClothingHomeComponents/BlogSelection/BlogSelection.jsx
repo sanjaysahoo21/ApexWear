@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './BlogSelection.css';
 import BlogImg1 from './assets/img.png';
 import BlogImg2 from './assets/img 2.png';
@@ -26,12 +27,19 @@ const blogs = [
 ];
 
 const BlogSelection = () => {
+    const navigate = useNavigate();
+
+    const handleExploreClick = (e) => {
+        e.preventDefault();
+        navigate('/shop');
+    };
+
     return (
         <section className="blog-section">
             <div className="blog-container">
                 <div className="blog-header">
                     <h2 className="blog-main-title">Latest Articles</h2>
-                    <a href="#" className="view-more-link">
+                    <a href="/shop" className="view-more-link" onClick={handleExploreClick}>
                         View More
                         <svg className="link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -48,7 +56,7 @@ const BlogSelection = () => {
                             </div>
                             <div className="blog-content">
                                 <h3 className="blog-title">{blog.title}</h3>
-                                <a href={blog.link} className="read-more-link">
+                                <a href="/shop" className="read-more-link" onClick={handleExploreClick}>
                                     Read More
                                     <svg className="link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <line x1="5" y1="12" x2="19" y2="12"></line>

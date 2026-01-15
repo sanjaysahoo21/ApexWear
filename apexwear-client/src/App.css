@@ -10,7 +10,8 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 80%;
+    /* Adjusted to 80% for a balanced size based on user feedback */
 }
 
 body {
@@ -238,7 +239,8 @@ small {
     line-height: 1.6;
 }
 
-ul, ol {
+ul,
+ol {
     margin: 0;
     padding: 0;
     list-style: none;

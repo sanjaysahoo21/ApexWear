@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './BannerGrid.css';
 
 // Import assets
@@ -42,6 +43,13 @@ const banners = [
 ];
 
 const BannerGrid = () => {
+    const navigate = useNavigate();
+
+    const handleLinkClick = (e) => {
+        e.preventDefault();
+        navigate('/shop');
+    };
+
     return (
         <section className="banner-grid-section">
             <div className="banner-grid">
@@ -50,7 +58,7 @@ const BannerGrid = () => {
                         <img src={banner.image} alt={banner.title} className="banner-img" />
                         <div className="banner-overlay">
                             <h3 className="banner-title">{banner.title}</h3>
-                            <a href="#" className="banner-link">
+                            <a href="/shop" className="banner-link" onClick={handleLinkClick}>
                                 {banner.linkText}
                                 <span className="arrow">→</span>
                             </a>

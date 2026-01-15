@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CategorySection.css';
 
 // Importing assets (Reusing assets if specific category ones aren't distinct files yet, 
@@ -20,12 +21,17 @@ const categories = [
 ];
 
 const CategorySection = () => {
+    const navigate = useNavigate();
     return (
         <section className="category-section">
             <h2 className="category-title">Shop by Categories</h2>
             <div className="category-grid">
                 {categories.map((cat, index) => (
-                    <div key={index} className="category-item">
+                    <div
+                        key={index}
+                        className="category-item"
+                        onClick={() => navigate('/shop')}
+                    >
                         <div className="category-img-container">
                             <img src={cat.image} alt={cat.title} className="category-img" />
                         </div>

@@ -17,14 +17,14 @@ import Img7 from '../../components/ClothingHomeComponents/ProductGrid/assets/Pas
 import Img8 from '../../components/ClothingHomeComponents/ProductGrid/assets/Image Placeholder.png';
 
 const products = [
-    { id: 101, image: Img1, name: "Premium Cotton T-Shirt", price: "₹299.00", rating: 5, category: "T-shirts", badge: "NEW", discount: "-20%" },
+    { id: 101, image: Img1, name: "Premium Cotton T-Shirt", price: "₹299.00", rating: 5, category: "T-shirts" },
     { id: 102, image: Img2, name: "Casual Denim Shirt", price: "₹899.00", rating: 4, category: "Shirts" },
-    { id: 103, image: Img3, name: "Urban Oversized Sweatshirt", price: "₹1299.00", rating: 5, category: "Sweatshirts", badge: "HOT" },
+    { id: 103, image: Img3, name: "Urban Oversized Sweatshirt", price: "₹1299.00", rating: 5, category: "Sweatshirts" },
     { id: 104, image: Img4, name: "Lightweight Windbreaker", price: "₹2499.00", rating: 5, category: "Jackets" },
     { id: 105, image: Img5, name: "Classic Chino Pants", price: "₹1599.00", rating: 4, category: "Pants" },
-    { id: 106, image: Img6, name: "Graphic Print Tee", price: "₹349.00", rating: 5, category: "T-shirts", discount: "-10%" },
+    { id: 106, image: Img6, name: "Graphic Print Tee", price: "₹349.00", rating: 5, category: "T-shirts" },
     { id: 107, image: Img7, name: "Slim Fit Formal Shirt", price: "₹1199.00", rating: 5, category: "Shirts" },
-    { id: 108, image: Img8, name: "Puffer Winter Jacket", price: "₹3999.00", rating: 5, category: "Jackets", badge: "NEW" },
+    { id: 108, image: Img8, name: "Puffer Winter Jacket", price: "₹3999.00", rating: 5, category: "Jackets" },
     { id: 109, image: Img1, name: "Essential Jogger Pants", price: "₹1299.00", rating: 4, category: "Pants" },
 ];
 
@@ -113,11 +113,6 @@ const Shop = () => {
                                     <div key={product.id} className="shop-product-card" onClick={() => navigate(`/product/${product.id}`)}>
                                         <div className="product-image-box">
                                             <img src={product.image} alt={product.name} />
-
-                                            <div className="product-badges">
-                                                {product.badge && <span className="badge-status">{product.badge}</span>}
-                                                {product.discount && <span className="badge-percent">{product.discount}</span>}
-                                            </div>
 
                                             <button
                                                 className="quick-add-to-cart"

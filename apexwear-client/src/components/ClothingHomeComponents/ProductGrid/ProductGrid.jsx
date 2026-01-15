@@ -98,12 +98,6 @@ const ProductGrid = () => {
                         <div className="grid-image-box">
                             <img src={product.image} alt={product.name} className="grid-product-img" />
 
-                            {/* Badges Container */}
-                            <div className="badges-container">
-                                {product.badge && <span className="badge-hot">{product.badge}</span>}
-                                {product.discount && <span className="badge-discount">{product.discount}</span>}
-                            </div>
-
                             {/* Add to Cart Overlay */}
                             <button
                                 className="grid-add-to-cart-btn"

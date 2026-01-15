@@ -74,12 +74,6 @@ const ProductDetails = () => {
                     <div className="product-visuals">
                         <div className="main-image-wrapper">
                             <img src={product.image} alt={product.name} />
-                            <div className="visuals-badges">
-                                <span className="badge-new">NEW</span>
-                                {product.originalPrice && (
-                                    <span className="badge-discount">-{discountPercent}%</span>
-                                )}
-                            </div>
                         </div>
                     </div>
 
